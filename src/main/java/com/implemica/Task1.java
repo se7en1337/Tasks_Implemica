@@ -1,5 +1,6 @@
 package com.implemica;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -12,14 +13,23 @@ import java.util.ArrayList;
 
 public class Task1 {
     public static void main(String[] args) {
-
-        Scanner scn = new Scanner(System.in);
-        System.out.println("Enter number");
-
         // Variable initialization
-
-        int n = scn.nextInt();
-        System.out.println(String.format("Correct bracket expressions - %s",process(n)));
+        int n = 0;
+        Scanner scan = new Scanner(System.in);
+        do {
+            while (true) {
+                try {
+                    System.out.print("Enter number from 1 to 19 : ");
+                    if (scan.hasNext()) {
+                        n = scan.nextInt();
+                    }
+                    break;
+                } catch (InputMismatchException ex) {
+                    scan.nextLine();
+                }
+            }
+            System.out.println(String.format("Correct bracket expressions - %s", process(n)));
+        }while (n > 19);
     }
 
     /**
